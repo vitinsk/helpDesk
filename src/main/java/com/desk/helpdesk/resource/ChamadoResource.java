@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.desk.helpdesk.model.Chamado;
 import com.desk.helpdesk.model.DTO.ChamadoDTO;
+import com.desk.helpdesk.model.DTO.ChamadoInfoDTO;
 import com.desk.helpdesk.service.ChamadoService;
 
 @RestController
@@ -46,6 +47,11 @@ public class ChamadoResource {
 	@PutMapping("/{codigo}/{status}")
 	public ResponseEntity<Chamado> alterarStatus(@PathVariable Integer codigo, @PathVariable String status){
 		return ResponseEntity.ok().body(chamadoService.alterarStatus(codigo, status));
+	}
+	
+	@GetMapping("/informacoes")
+	public ResponseEntity<ChamadoInfoDTO> findInformacoes(){
+		return ResponseEntity.ok().body(chamadoService.findInformacoes());
 	}
 	
 	

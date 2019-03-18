@@ -11,6 +11,7 @@ import com.desk.helpdesk.model.Mensagem;
 import com.desk.helpdesk.model.Servico;
 import com.desk.helpdesk.model.Usuario;
 import com.desk.helpdesk.model.DTO.ChamadoDTO;
+import com.desk.helpdesk.model.DTO.ChamadoInfoDTO;
 import com.desk.helpdesk.model.enums.Status;
 import com.desk.helpdesk.repository.ChamadoRepository;
 import com.desk.helpdesk.service.exception.DataIntegrityException;
@@ -104,6 +105,30 @@ public class ChamadoService {
 			return true;
 		}
 		return false;
+	}
+	
+	public ChamadoInfoDTO findInformacoes() {
+		ChamadoInfoDTO informacoes = new ChamadoInfoDTO();
+		List<Chamado> chamados = findAll();
+		int finalizados = 0;
+		int abertos = 0;
+		int pendentes = 0;
+		for(Chamado chamado : chamados) {
+			if (chamado.getStatus().equals(Status.ABERTO)) {
+				abertos++;
+			}
+			if (chamado.getStatus().equals(Status.FINALIZADO)) {
+				finalizados++;
+			}
+			if (chamado.getStatus().equals(Status.PENDENTE) || chamado.getStatus().equals(Status.PENDENTE)) {
+				pendentes++;
+			}
+		}
+		informacoes.setQtdChamadoAberto(abertos);
+		informacoes.setQtdChamadoFinalizado(finalizados);
+		informacoes.setQtdChamadoPendente(pendentes);
+		
+		return informacoes;
 	}
 	
 }
