@@ -1,5 +1,6 @@
 package com.desk.helpdesk;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,10 @@ public class HelpDeskApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		Usuario usuario = new Usuario("Vitor", "vitinsk@hotmail.com", pe.encode("123"));
+		Usuario usuario1 = new Usuario("Igor", "igorhenrioli@gmail.com", pe.encode("123"));
 		Usuario responsavel = new Usuario("Responsável", "teste@hotmail.com", pe.encode("123"));
 		usuario = usuarioRepository.save(usuario);
-		
+		usuarioRepository.saveAll(Arrays.asList(usuario1));
 		responsavel.addPerfil(Perfil.RESPONSAVEL);
 		responsavel.addPerfil(Perfil.ADMIN);
 		responsavel = usuarioRepository.save(responsavel);
