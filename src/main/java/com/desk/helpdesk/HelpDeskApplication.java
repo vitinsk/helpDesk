@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.desk.helpdesk.model.Chamado;
 import com.desk.helpdesk.model.Mensagem;
@@ -31,12 +32,12 @@ public class HelpDeskApplication implements CommandLineRunner{
     @Autowired private SlaRepository slaRepository;
     @Autowired private ChamadoRepository chamadoRepository;
     @Autowired ServicoRepository servicoRepository;
-    
+    @Autowired	private BCryptPasswordEncoder pe;
     
 	@Override
 	public void run(String... args) throws Exception {
-		Usuario usuario = new Usuario("Vitor", "vitinsk@hotmail.com", "123");
-		Usuario responsavel = new Usuario("Responsável", "teste@hotmail.com", "123");
+		Usuario usuario = new Usuario("Vitor", "vitinsk@hotmail.com", pe.encode("123"));
+		Usuario responsavel = new Usuario("Responsável", "teste@hotmail.com", pe.encode("123"));
 		usuario = usuarioRepository.save(usuario);
 		
 		responsavel.addPerfil(Perfil.RESPONSAVEL);

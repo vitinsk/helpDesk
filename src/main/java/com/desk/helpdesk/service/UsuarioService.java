@@ -3,6 +3,7 @@ package com.desk.helpdesk.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.desk.helpdesk.model.Usuario;
@@ -15,7 +16,7 @@ import com.desk.helpdesk.service.exception.ObjectNotFoundException;
 public class UsuarioService {
 
 	@Autowired UsuarioRepository usuarioRepository;
-	//@Autowired	private BCryptPasswordEncoder encode;
+	@Autowired	private BCryptPasswordEncoder encode;
 
 	public Usuario findById(Integer id) {
 		Usuario usuario = usuarioRepository.findById(id).orElse(null);
