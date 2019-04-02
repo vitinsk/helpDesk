@@ -50,8 +50,22 @@ public class HelpDeskApplication implements CommandLineRunner{
 		sla = slaRepository.save(sla);
 		
 		
-		Servico servico = new Servico("Financeiro", responsavel, sla);
+		Servico servico = new Servico("Análise de Erros", responsavel, sla);
+		Servico servico1 = new Servico("Análise de Performace", responsavel, sla);
+		Servico servico2 = new Servico("Backup de Banco de Dados", responsavel, sla);
+		Servico servico3 = new Servico("Conceder/Alterar Permissões", responsavel, sla);
+		Servico servico4 = new Servico("Criação de Banco de Dados", responsavel, sla);
+		Servico servico5 = new Servico("Criação de Monitoramento", responsavel, sla);
+		Servico servico6 = new Servico("Criação de Usuários", responsavel, sla);
+		Servico servico7 = new Servico("Criação/Configuração de Instâncias", responsavel, sla);
+		Servico servico8 = new Servico("Deletar Banco de Dados", responsavel, sla);
+		Servico servico9 = new Servico("Deletar Instância", responsavel, sla);
+		Servico servico10 = new Servico("Executar Script", responsavel, sla);
+		Servico servico11 = new Servico("Otimizar Queries", responsavel, sla);
+		Servico servico12 = new Servico("Otimização de Recursos", responsavel, sla);
+		Servico servico13 = new Servico("Restore de Banco de Dados", responsavel, sla);
 		servico = servicoRepository.save(servico);
+		servicoRepository.saveAll(Arrays.asList(servico,servico2,servico3,servico4,servico5,servico6,servico7,servico8,servico9,servico10,servico11,servico12,servico13));
 		
 		Chamado chamado = new Chamado("Boas vindas", "Mensagem de boas vindas", usuario, servico);
 		chamado = chamadoRepository.save(chamado);
