@@ -64,7 +64,7 @@ public class ChamadoService {
 				chamadoDTO.getObservacao(), 
 				usuario, servico);
 		
-		Mensagem mensagem = new Mensagem(chamadoDTO.getMensagem(), new Date(), chamado);
+		Mensagem mensagem = new Mensagem(chamadoDTO.getMensagem(), new Date(), chamado, usuario);
 	
 		chamado = save(chamado);
 		mensagem = mensagemService.save(mensagem);

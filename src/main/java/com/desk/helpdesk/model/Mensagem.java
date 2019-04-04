@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity(name = "tb_mensagem")
 public class Mensagem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -18,9 +22,12 @@ public class Mensagem implements Serializable {
     
     private String mensagem;
     
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date data;
     
-   
+    @ManyToOne
+    private Usuario usuario;
+    
     @ManyToOne
     private Chamado chamado;
 
@@ -28,11 +35,12 @@ public class Mensagem implements Serializable {
     	this.data = new Date();
     }
     
-	public Mensagem(String mensagem, Date data, Chamado chamado) {
+	public Mensagem(String mensagem, Date data, Chamado chamado, Usuario usuario) {
 		super();
 		this.mensagem = mensagem;
 		this.data = data;
 		this.chamado = chamado;
+		this.usuario = usuario;
 	}
 
 
@@ -67,6 +75,14 @@ public class Mensagem implements Serializable {
 
 	public void setChamado(Chamado chamado) {
 		this.chamado = chamado;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
     
     

@@ -70,7 +70,7 @@ public class HelpDeskApplication implements CommandLineRunner{
 		Chamado chamado = new Chamado("Boas vindas", "Mensagem de boas vindas", usuario, servico);
 		chamado = chamadoRepository.save(chamado);
 				
-		Mensagem mensagem = new Mensagem(chamado.getObservacao(), new Date(), chamado);
+		Mensagem mensagem = new Mensagem(chamado.getObservacao(), new Date(), chamado, usuario);
 		mensagemRepository.save(mensagem);
 	}
 

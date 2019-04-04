@@ -15,9 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.desk.helpdesk.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "tb_chamado")
@@ -27,9 +28,14 @@ public class Chamado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
     private String titulo;
+    
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date data;
+    
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     @Column(name = "data_fim")
     private Date dataFim;
+    
     private String observacao;
    
    
